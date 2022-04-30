@@ -1,42 +1,30 @@
 #include "main.h"
+
 /**
-  * Sqrt - returns Square root of a number
-  * @number: Number whose square root is to be determined
-  * @sqrt_num: Square root of a number ;number
-  * Return: If the number has a natural square root - the square root.
-  */
-int Sqrt(int number, int sqrt_num)
+ * sqrt_calc - Finds natural square root, if it exists
+ * @n: Variable holding potential natural square root
+ * @m: Variable of original inputted value
+ * Return: The natural square root, or -1 if one does not exist
+ */
+int sqrt_calc(int m, int n)
 {
-	if (number == sqrt_num * sqrt_num)
-	{
-		return (sqrt_num);
-	}
-	if (number / 2 == sqrt_num)
-	{
+	if (n == m * m)
+		return (n / m);
+	else if (n < m * m)
 		return (-1);
-	}
-	return (Sqrt(number, (sqrt_num + 1)));
+	return (sqrt_calc(m + 1, n));
 }
 
 /**
-  * _sqrt_recursion - Returns natural square root of a number
-  * @n: Number whose square root is to be determined
-  * Return: If n has a natural square root - the natural square root of n.
-  */
+ * _sqrt_recursion - check the code for Holberton School students.
+ * @n: Original value
+ * Return: Always 0.
+ */
 int _sqrt_recursion(int n)
 {
-	int sqrt_num = 0;
-
-	if (n < 0)
-	{
+	if (n == 0 || n == 1)
+		return (n);
+	else if (n < 0)
 		return (-1);
-	}
-	if (n == 1)
-	{
-		return (1);
-	}
-	else
-	{
-		return (Sqrt(n, sqrt_num));
-	}
+	return (sqrt_calc(1, n));
 }

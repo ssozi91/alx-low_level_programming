@@ -1,35 +1,31 @@
 #include "main.h"
 
 /**
- * prime - Checks if a number is divisible.
- * @number: The number to be checked.
- * @divisor: The divisor.
- *
- * Return: 0 if the number is divisible
- *         1 if the number is not divisible
+ * is_prime_num - detects if an input number is a prime number.
+ * @n: input number.
+ * @iter: iterator.
+ * Return: 1 if n is a prime number. 0 if n is not a prime number.
  */
-int prime(int number, int divisor)
+int is_prime_num(int n, int iter)
 {
-if (number % divisor == 0)
-return (0);
-if (divisor == number / 2)
-return (1);
-return (prime(number, divisor + 1));
+	if (n % iter == 0)
+	{
+		if (n == iter)
+			return (1);
+		else
+			return (0);
+	}
+	return (0 + is_prime_num(n, ++iter));
 }
 
 /**
- * is_prime_number - Checks if a number is prime.
- * @n: The number to be checked.
- *
- * Return: 0 if the integer is not prime
- *         1 if the number is primee
+ * is_prime_number - detects if an input number is a prime number.
+ * @n: input number.
+ * Return: 1 if n is a prime number. 0 if n is not a prime number.
  */
 int is_prime_number(int n)
 {
-int divisor = 2;
-if (n <= 1)
-return (0);
-if (n >= 2 && n <= 3)
-return (1);
-return (prime(n, divisor));
+	if (n <= 1)
+		return (0);
+	return (is_prime_num(n, 2));
 }

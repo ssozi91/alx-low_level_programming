@@ -1,51 +1,43 @@
 #include "main.h"
+
 /**
- * length - Returns the length of a string.
- * @s: The string to be measured.
- *
- * Return: The length of the string.
+ * _strlen - Function that checks length of string
+ * @ltr: String to be checked
+ * Return: String length in integer
  */
-int length(char *s)
+int _strlen(char *ltr)
 {
-int len = 0;
-if (*(s + len))
-{
-len++;
-len += length(s + len);
-}
-return (len);
+	if (*ltr == '\0')
+		return (0);
+
+	return (_strlen(ltr + 1) + 1);
 }
 
 /**
- * check - Checks if a string is a palindrome.
- * @s: The string to be checked.
- * @len: The length of s.
- * @index: The index of the string to be checked.
- *
- * Return: If the string is a palindrome - 1.
- *         If the string is not a palindrome - 0.
+ * comparator - Main recursion function that checks for matching characters
+ * @a: Variable holding pointer placement from the beginning
+ * @b: Variable holding pointer placement from the end
+ * Return: 1 if palindrome, 0 otherwise
  */
-int check(char *s, int len, int index)
+int comparator(char *a, char *b)
 {
-if (s[index] == s[len / 2])
-return (1);
-if (s[index] == s[len - index - 1])
-return (check(s, len, index + 1));
-return (0);
+	if (a > b)
+		return (1);
+	if (*a != *b)
+		return (0);
+
+	return (comparator(a + 1, b - 1));
 }
 
 /**
- * is_palindrome - Checks if a string is a palindrome.
- * @s: The string to be checked.
- *
- * Return: If the string is a palindrome - 1.
- *         If the string is not a palindrome - 0.
+ * is_palindrome - check the code for Holberton School students.
+ * @s: String for checking
+ * Return: Always 0.
  */
 int is_palindrome(char *s)
 {
-int index = 0;
-int len = length(s);
-if (!(*s))
-return (1);
-return (check(s, len, index));
+	int i;
+
+	i = _strlen(s);
+	return (comparator(s, s + i - 1));
 }
