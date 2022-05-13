@@ -1,1 +1,1 @@
-all my variadic functions pointer
+all my variadic work
